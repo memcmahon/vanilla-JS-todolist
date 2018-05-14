@@ -20,24 +20,27 @@ var todoList = {
     var totalTodos = this.todos.length;
     var completedTodos = 0;
     
-    // Get number of completed todos.
-    for (var i = 0; i < totalTodos; i++) {
-      if (this.todos[i].completed === true) {
+    this.todos.forEach(function(todo) {
+      if (todo.completed) {
         completedTodos++;
       }
-    }
+    });
     
-    // Case 1: If everything’s true, make everything false.
-    if (completedTodos === totalTodos) {
-      for (var i = 0; i < totalTodos; i++) {
-        this.todos[i].completed = false;
+    // if (completedTodos === totalTodos) {
+    //   this.todos.forEach(function(todo) {
+    //     todo.completed = false;
+    //   });
+    // } else {
+    //   this.todos.forEach(function(todo) {
+    //     todo.completed = true;
+    //   });    
+    // }
+    
+    this.todos.forEach(function(todo) {
+      if (completedTodos === totalTodos) {
+        todo.completed = false;
       }
-    // Case 2: Otherwise, make everything true.
-    } else {
-      for (var i = 0; i < totalTodos; i++) {
-        this.todos[i].completed = true;
-      }      
-    }
+    });
   }
 };
 
@@ -98,16 +101,21 @@ var view = {
     deleteButton.textContent = 'Delete';
     deleteButton.className = 'deleteButton';
     return deleteButton;
+  },
+  setUpEventListeners: function() {
+    var todosUl = document.querySelector('ul');
+
+    todosUl.addEventListener('click', function(event) {
+      var elementClicked = event.target;
+
+      if (elementClicked.className === 'deleteButton') {
+        handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
+      }
+    })
   }
 };
 
-var todosUl = document.querySelector('ul');
+view.setUpEventListeners();
 
-todosUl.addEventListener('click', function(event) {
-  var elementClicked = event.target;
-  
-  if (elementClicked.className === 'deleteButton') {
-    handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
-  }
-});
+
                                      
