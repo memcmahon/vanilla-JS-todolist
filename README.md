@@ -1,7 +1,10 @@
-Welcome to Practical JavaScript!
+Vanilla JavaScript Todo List
 ============================
 
-This is the finished code for Version 9 of the
-application for Practical JavaScript.
+This is an exersise in building a todolist in vanilla javascript.
 
-For more details, visit practicaljavascript.net.
+To use the application:
+
+* Clone down this repo `$ git clone https://github.com/memcmahon/vanilla-JS-todolist.git`
+* `$ cd vanilla-JS-todolist`
+* `$ open views/index.html`
